@@ -18,11 +18,11 @@ exports.user_create_post = [
     body("password")
     .trim()
     .isStrongPassword()
-    .escape(),
+    .escape(), /*
     body("confirm_password")
     .custom((value, {req}) => {
         return value === req.body.password;
-    }),
+    }), */
 
     async (req, res, next) => {
         const errors = validationResult(req);
@@ -35,22 +35,14 @@ exports.user_create_post = [
         }
 
         try {
-            bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
-                // if err, do something
-                if (err) {
-                    return next(err);
-                }
-                // otherwise, store hashedPassword in DB
-                else {
-                    await prisma.user.create({
-                        data: {
-                          username: req.body.username,
-                          password: hashedPassword,
-                        },
-                      });
-                    res.redirect("/");
-                }
-            });
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+            await prisma.user.create({
+                data: {
+                  username: req.body.username,
+                  password: hashedPassword,
+                },
+              });
+            res.redirect("/");
         }
         catch(error) {
             next(error);
