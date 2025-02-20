@@ -4,12 +4,25 @@ const passport = require("passport");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
-exports.user_create_get = asyncHandler(async (req, res, next) =>
-    {
-        res.render("sign_up", {title: "Sign Up Form", errors: []})
-    });
+exports.user_create_get = (req, res) => res.render("sign-up-form")
     
-exports.user_create_post = [
+exports.user_create_post =
+async (req, res, next) => {
+  try {
+   const hashedPassword = await bcrypt.hash(req.body.password, 10);
+   await prisma.user.create({
+    data: {
+      username: req.body.username,
+      password: hashedPassword,
+    },
+  });
+   res.redirect("/");
+  } catch (error) {
+     console.error(error);
+     next(error);
+    }
+ }
+/* [
 
     body("username")
     .trim()
@@ -18,11 +31,11 @@ exports.user_create_post = [
     body("password")
     .trim()
     .isStrongPassword()
-    .escape(), /*
+    .escape(), 
     body("confirm_password")
     .custom((value, {req}) => {
         return value === req.body.password;
-    }), */
+    }), 
 
     async (req, res, next) => {
         const errors = validationResult(req);
@@ -48,7 +61,7 @@ exports.user_create_post = [
             next(error);
         }
     }
-];
+]; */
 
 exports.user_login_get = asyncHandler(async (req, res, next) =>
 {
@@ -57,20 +70,17 @@ exports.user_login_get = asyncHandler(async (req, res, next) =>
     })
 });
 
-exports.user_login_post = [
-    passport.authenticate("local", {
-        successRedirect: "/",
-        failureRedirect: "/"
-    })
-];
+exports.user_login_post =  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/"
+  });
 
 
-exports.user_logout_get = asyncHandler(async (req, res, next) =>
-{
+exports.user_logout_get = (req, res, next) => {
     req.logout((err) => {
-        if (err) {
+      if (err) {
         return next(err);
-        }
-        res.redirect("/");
+      }
+      res.redirect("/");
     });
-});
+  }
