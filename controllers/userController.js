@@ -4,6 +4,10 @@ const passport = require("passport");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
+exports.index = (req, res, next) => 
+    res.render("index", { user: req.user, title: "Sign Up Form"});
+    
+
 exports.user_create_get = (req, res) => res.render("sign-up-form")
     
 exports.user_create_post =
