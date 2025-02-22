@@ -1,5 +1,5 @@
-<form action="/file/upload" method="POST">
-    <label for="name">Name</label>
-    <input type="text" name="name" />
-    <button>Create Folder</button>
+<form action="/file/upload" enctype="multipart/form-data" method="POST">
+    <label for="file_upload">File</label>
+    <input type="file" name="file_upload" />
+    <button>Upload File</button>
   </form>
