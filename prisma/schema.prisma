@@ -15,7 +15,7 @@ datasource db {
 
 model Folder {
   id      Int      @id @default(autoincrement())
-  name    String
+  name    String   @unique
   files   File[]
   createdBy User @relation(fields: [userId], references: [id])
   userId   Int 
@@ -23,7 +23,7 @@ model Folder {
 
 model File {
   id      Int      @id @default(autoincrement())
-  name    String
+  name    String   
   createdAt DateTime @default(now())
   createdBy User   @relation(fields: [userId], references: [id])
   userId   Int     

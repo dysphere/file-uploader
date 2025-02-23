@@ -5,12 +5,10 @@
   <title></title>
 </head>
 <body>
-    <ul>
-        <li><%= title %></li>
-      </ul>
   <h1>hello world!</h1>
   <% if (locals.user) {%>
     <h1>WELCOME BACK <%= user.username %></h1>
+    
     <a href="/file/upload">Upload File</a>
     <a href="/folder/create">Create Folder</a>
     <a href="/log-out">LOG OUT</a>

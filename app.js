@@ -44,7 +44,7 @@ app.use(
 );
 
 app.use(passport.session());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
