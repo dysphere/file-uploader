@@ -2,6 +2,10 @@
     <label for="file_upload">File</label>
     <input type="file" name="file_upload" />
     <label for="folder">Folder</label>
-    
+    <select name="folder" id="folder">
+      <% folders.forEach(folder => { %>
+        <option value="<%= folder.id %>"><%= folder.name %></option>
+      <% }); %>
+    </select>
     <button>Upload File</button>
   </form>

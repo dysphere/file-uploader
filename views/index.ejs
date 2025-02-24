@@ -8,7 +8,14 @@
   <h1>hello world!</h1>
   <% if (locals.user) {%>
     <h1>WELCOME BACK <%= user.username %></h1>
-    
+    <ul>
+      <% folders.forEach(folder => { %>
+        <li><%= folder.name %> - <%= folder.id %> </li>
+      <% }); %>
+    </ul>
+    <form method="POST" action="/folder/delete">
+      <button type="submit">Delete</button>
+</form>
     <a href="/file/upload">Upload File</a>
     <a href="/folder/create">Create Folder</a>
     <a href="/log-out">LOG OUT</a>
