@@ -1,7 +1,6 @@
 /////// app.js
 const expressSession = require('express-session');
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
-const { PrismaClient } = require('@prisma/client');
 const path = require("node:path");
 const express = require("express");
 const passport = require("passport");
@@ -19,7 +18,7 @@ const indexRouter = require('./routes/index');
 const folderRouter = require('./routes/folders');
 const fileRouter = require('./routes/files');
 
-const prisma = new PrismaClient()
+const prisma = require("./db/prisma")
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -33,7 +32,7 @@ app.use(
     resave: true,
     saveUninitialized: true,
     store: new PrismaSessionStore(
-      new PrismaClient(),
+      prisma,
       {
         checkPeriod: 2 * 60 * 1000,  //ms
         dbRecordIdIsSessionId: true,

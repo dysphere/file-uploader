@@ -1,4 +1,4 @@
-const prisma = require("../prisma/prisma")
+const prisma = require("../db/prisma");
 
 exports.file_create_get = async (req, res, next) => {
     const folders = await prisma.folder.findMany();

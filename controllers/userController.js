@@ -1,11 +1,12 @@
-const prisma = require("../prisma/prisma")
+const prisma = require("../db/prisma");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
 exports.index = async (req, res, next) => {
-    res.render("index", { user: req.user, folders: folders});
+  const folders = await prisma.folder.findMany();
+  res.render("index", { user: req.user, folders: folders});
 }
     
 
