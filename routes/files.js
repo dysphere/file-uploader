@@ -16,6 +16,6 @@ router.get('/:id/update', file_controller.file_update_post);
 
 router.post('/:id/delete', file_controller.file_delete_post);
 
-router.post('/:id/download', file_controller.file_download_post);
+router.get('/:id/download', file_controller.file_download_get);
 
 module.exports = router; 

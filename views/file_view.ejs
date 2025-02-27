@@ -12,5 +12,10 @@
   <p><%= file.mimetype %></p>
   <p><%= file.url %></p>
   <p><%= file.size %></p>
+  <a href="/file/<%= file.id %>/download">Download</a>
+  <a href="/file/<%= file.id %>/update">Update</a>
+  <form method="POST" action="/file/<%= file.id %>/delete">
+    <button type="submit">Delete</button>
+</form>
 </body>
 </html>

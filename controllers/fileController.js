@@ -1,7 +1,5 @@
 const prisma = require("../db/prisma");
 const { uploadToCloudinary } = require("../storage/cloudinary_config");
-const fs = require('fs');
-const path = require("node:path");
 
 exports.file_create_get = async (req, res, next) => {
     const folders = await prisma.folder.findMany();
@@ -16,7 +14,7 @@ exports.file_create_get = async (req, res, next) => {
 exports.file_create_post = async (req, res, next) => {
     try {
         const fileUrl = await uploadToCloudinary(req.file.path);
-        const KB_convert = parseFloat(req.file.size / 1024).toFixed(2);
+        const KB_convert = parseFloat(parseFloat(req.file.size / 1024).toFixed(2));
         const file = await prisma.file.create({
          data: {
            name: req.file.originalname,
@@ -62,6 +60,7 @@ exports.file_update_get = async (req, res, next) => {
 exports.file_update_post = async (req, res, next) => {
     try {
         const fileUrl = await uploadToCloudinary(req.file.path);
+        const KB_convert = parseFloat(parseFloat(req.file.size / 1024).toFixed(2));
         const file = await prisma.file.update({
             where: {
               id: parseInt(req.params.id),
@@ -71,7 +70,7 @@ exports.file_update_post = async (req, res, next) => {
                 userId: req.user.id,
                 folderId: parseInt(req.body.folder),
                 url: fileUrl,
-                size: req.file.size,
+                size: KB_convert,
                 mimetype: req.file.mimetype,
                 path: req.file.path,
             },
@@ -92,4 +91,13 @@ exports.file_delete_post = async (req, res, next) => {
       res.redirect("/");
 }
 
-exports.file_download_post = (req, res, next) => {}
+exports.file_download_get = async (req, res, next) => {
+    const file = await prisma.file.findUnique({
+        where: {
+          id: parseInt(req.params.id),
+        },
+      });
+    const path = file.path;
+    const name = file.name;
+    res.download(path, name);
+}
