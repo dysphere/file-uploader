@@ -14,11 +14,15 @@ exports.file_create_get = async (req, res, next) => {
 exports.file_create_post = async (req, res, next) => {
     try {
         const fileUrl = await uploadToCloudinary(req.file.path);
+        const KB_convert = parseFloat(req.file.size / 1024).toFixed(2);
         await prisma.file.create({
          data: {
            name: req.file.originalname,
            userId: req.user.id,
            folderId: parseInt(req.body.folder),
+           url: fileUrl,
+           size: KB_convert,
+           mimetype: req.file.mimetype
          },
        });
         res.redirect(`/file/${file.id}`);
@@ -39,6 +43,7 @@ exports.file_read_get = async (req, res, next) => {
           id: file.userId,
         },
       });
+    const folder
     res.render("file_view", {file: file, author: fileAuthor});
 }
 

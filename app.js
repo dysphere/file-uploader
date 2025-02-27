@@ -14,6 +14,8 @@ const logger = require('morgan');
 const compression = require("compression");
 const helmet = require("helmet");
 
+require("dotenv").config();
+
 const indexRouter = require('./routes/index');
 const folderRouter = require('./routes/folders');
 const fileRouter = require('./routes/files');
