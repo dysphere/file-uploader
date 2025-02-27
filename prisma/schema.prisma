@@ -31,6 +31,7 @@ model File {
   folderId  Int
   url    String 
   mimetype String 
+  path String
   size   Float
 }
 
