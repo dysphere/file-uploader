@@ -26,7 +26,10 @@ exports.folder_read_get = async (req, res, next) => {
           id: parseInt(req.params.id),
         },
       });
-    res.render("folder_view", {folder: folder});
+    const files = await prisma.file.findMany({
+      where: { folderId: parseInt(req.params.id)},
+    });
+    res.render("folder_view", {folder: folder, files: files});
 }
 
 exports.folder_update_get = async (req, res, next) => {
