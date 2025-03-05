@@ -95,6 +95,17 @@ app.use((req, res, next) => {
 
 app.use(compression()); // Compress all routes
 app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", "data:", "https://res.cloudinary.com/"],
+        // Add other directives as needed
+      },
+    },
+  })
+);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

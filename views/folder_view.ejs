@@ -6,13 +6,22 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>    
-  <h1> <%= folder.name %></h1>
-    <% files.forEach(file => { %>
-      <a href="/file/<%= file.id %>"><%= file.name %></a>
-    <% }); %>
+  <h1 class="folder-name"> <%= folder.name %></h1>
+  <div class="folder-action-container">
   <a href="/folder/<%= folder.id %>/update">Update</a>
   <form method="POST" action="/folder/<%= folder.id %>/delete">
     <button type="submit">Delete</button>
 </form>
+</div>
+  <div class="files-container">
+    <% files.forEach(file => { %>
+      <div class="small-file">
+        <img
+  class="thumbnail"
+  src="<%= file.url %>"/>
+      <a href="/file/<%= file.id %>"><%= file.name %></a>
+      </div>
+    <% }); %>
+  </div>
 </body>
 </html>

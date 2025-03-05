@@ -7,20 +7,29 @@
 </head>
 <body>
   <% if (locals.user) {%>
-    <h1>WELCOME BACK <%= user.username %></h1>
     <div>
+    <div class="links-container">
+      <div class="create-container">
+        <a href="/">File Uploader</a>
+    <a href="/file/upload">Upload File</a>
+    <a href="/folder/create">Create Folder</a>
+    </div>
+    <div class="logout-container">
+    <p><%= user.username %></p>
+    <a href="/log-out">Log Out</a>
+    </div>
+    </div>
+    <div class="folder-container">
       <% folders.forEach(folder => { %>
         <div>
-        <a href="/folder/<%= folder.id %>"><%= folder.name %> </a>
+        <a class="folder" href="/folder/<%= folder.id %>"><%= folder.name %> </a>
         </div>
       <% }); %>
     </div>
-    <form method="POST" action="/folder/delete">
-      <button type="submit">Delete All Folders</button>
-</form>
-    <a href="/file/upload">Upload File</a>
-    <a href="/folder/create">Create Folder</a>
-    <a href="/log-out">LOG OUT</a>
+    <div>
+      <a href="https://www.flaticon.com/free-icons/folder" title="folder icons">Folder icons created by cahiwak - Flaticon</a>
+    </div>
+    </div>
   <% } else { %>
     <h1>please log in</h1>
     <a href="/sign-up">Sign Up</a>

@@ -6,20 +6,32 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-    <h1><%= folder.name %></h1>
+    <div class="all-container">
+    <div>
+    <h1 class="folder-name"><%= folder.name %></h1>
+    </div>
+    <div class="file-container">
+    <div>
     <img
-  class=""
-  src="<%= file.path %>"/>
-  <p><%= file.name %></p>
-  <p><%= author.username %></p>
-  <p><%= file.createdAt %></p>
-  <p><%= file.mimetype %></p>
-  <p><%= file.url %></p>
-  <p><%= file.size %></p>
+  class="file-image"
+  src="<%= file.url %>"/>
+  </div>
+  <div class="file-action-container">
   <a href="/file/<%= file.id %>/download">Download</a>
   <a href="/file/<%= file.id %>/update">Update</a>
   <form method="POST" action="/file/<%= file.id %>/delete">
     <button type="submit">Delete</button>
 </form>
+</div>
+<div class="file-info">
+  <p>Name: <%= file.name %></p>
+  <p>Author: <%= author.username %></p>
+  <p>Created: <%= file.createdAt %></p>
+  <p>Media Type: <%= file.mimetype %></p>
+  <p>Size: <%= file.size %> KB</p>
+  </div>
+  </div>
+  </div>
+  </div>
 </body>
 </html>
