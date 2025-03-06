@@ -6,6 +6,17 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>    
+  <div class="links-container">
+    <div class="create-container">
+      <a href="/">File Uploader</a>
+  <a href="/file/upload">Upload File</a>
+  <a href="/folder/create">Create Folder</a>
+  </div>
+  <div class="logout-container">
+  <p><%= user.username %></p>
+  <a href="/log-out">Log Out</a>
+  </div>
+  </div>
   <h1 class="folder-name"> <%= folder.name %></h1>
   <div class="folder-action-container">
   <a href="/folder/<%= folder.id %>/update">Update</a>

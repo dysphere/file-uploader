@@ -6,16 +6,36 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
+  <div class="links-container">
+    <div class="create-container">
+      <a href="/">File Uploader</a>
+  <a href="/file/upload">Upload File</a>
+  <a href="/folder/create">Create Folder</a>
+  </div>
+  <div class="logout-container">
+  <p><%= user.username %></p>
+  <a href="/log-out">Log Out</a>
+  </div>
+  </div>
+  <div class="file-page">
+  <h1>Upload File</h1>
   <form action="" enctype="multipart/form-data" method="POST">
+    <div class="file-form">
+      <div>
     <label for="file_upload">File</label>
     <input type="file" name="file_upload" />
+    </div>
+    <div>
     <label for="folder">Folder</label>
     <select name="folder" id="folder">
       <% folders.forEach(folder => { %>
         <option value="<%= folder.id %>"><%= folder.name %></option>
       <% }); %>
     </select>
+    </div>
     <button>Upload File</button>
+    </div>
   </form>
+  </div>
 </body>
 </html>

@@ -29,7 +29,7 @@ exports.folder_read_get = async (req, res, next) => {
     const files = await prisma.file.findMany({
       where: { folderId: parseInt(req.params.id)},
     });
-    res.render("folder_view", {folder: folder, files: files});
+    res.render("folder_view", {folder: folder, files: files, user: req.user});
 }
 
 exports.folder_update_get = async (req, res, next) => {

@@ -6,11 +6,26 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
-    <h1>WELCOME BACK <%= user.id %></h1>
+    <div class="links-container">
+      <div class="create-container">
+        <a href="/">File Uploader</a>
+    <a href="/file/upload">Upload File</a>
+    <a href="/folder/create">Create Folder</a>
+    </div>
+    <div class="logout-container">
+    <p><%= user.username %></p>
+    <a href="/log-out">Log Out</a>
+    </div>
+    </div>
+    <h1>Create Folder</h1>
     <form action="" method="POST">
+      <div class="folder-form">
+        <div>
       <label for="name">Name</label>
       <input id="name" name="name" type="text" />
+      </div>
       <button>Create Folder</button>
+      </div>
     </form>
   </body>
   </html>

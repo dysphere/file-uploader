@@ -49,7 +49,7 @@ exports.file_read_get = async (req, res, next) => {
           id: file.folderId,
         },
       });
-    res.render("file_view", {file: file, author: fileAuthor, folder: folder});
+    res.render("file_view", {file: file, author: fileAuthor, folder: folder, user: req.user});
 }
 
 exports.file_update_get = async (req, res, next) => {
