@@ -112,8 +112,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+function requireLogin(req, res, next) {
+  if (!req.session.user) {
+    return res.redirect('/');
+  }
+  next();
+}
+
 app.use('/', indexRouter);
+app.use('/folder', requireLogin);
 app.use('/folder', folderRouter);
+app.use('/file', requireLogin);
 app.use('/file', fileRouter);
 
 // catch 404 and forward to error handler
