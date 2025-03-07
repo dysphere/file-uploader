@@ -182,6 +182,41 @@ text-align: left;
   align-items: center;
 }
 
-.footer {
-  margin-top: auto;
+.default-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.default-links {
+  display: flex;
+  gap: 20px;
+}
+
+.sign-up {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.log-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.log-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.update-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

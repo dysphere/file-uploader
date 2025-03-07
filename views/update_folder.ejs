@@ -6,10 +6,28 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
+    <div class="links-container">
+        <div class="create-container">
+          <a href="/">File Uploader</a>
+      <a href="/file/upload">Upload File</a>
+      <a href="/folder/create">Create Folder</a>
+      </div>
+      <div class="logout-container">
+      <p><%= user.username %></p>
+      <a href="/log-out">Log Out</a>
+      </div>
+      </div>
+      <div class="update-page">
+      <h1>Update Folder</h1>
     <form action="" method="POST">
+        <div class="update">
+        <div>
       <label for="name">Name</label>
       <input id="name" name="name" value="<%= folder.name %>" type="text" />
+      </div>
       <button>Update Folder</button>
+      </div>
     </form>
+    </div>
 </body>
 </html>

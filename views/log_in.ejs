@@ -6,16 +6,21 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-  <h1>please log in</h1>
-  <ul>
-      <li><%= title %></li>
-    </ul>
+  <div class="log-body">
+  <h1>Log In</h1>
     <form action="/log-in" method="POST">
+      <div class="log-in">
+        <div>
       <label for="username">Username</label>
-      <input id="username" name="username" placeholder="username" type="text" />
+      <input id="username" name="username" type="text" />
+      </div>
+      <div>
       <label for="password">Password</label>
       <input id="password" name="password" type="password" />
+      </div>
       <button type="submit">Log In</button>
+      </div>
     </form>
+    </div>
 </body>
 </html>
